@@ -24,7 +24,12 @@ void GetImages::GetRoi(int argc, char **argv, Mat img, bool debug)
     ros::ServiceClient client = n.serviceClient<ros_cv_img::GetRoi>("get_roi");
     ros_cv_img::GetRoi srv;
     
-    srv.request.input = 1;
+    //https://wiki.ros.org/image_transport/Tutorials/PublishingImages
+    
+    //image_transport::ImageTransport it(n);
+    
+    //srv.request.input = 1;
+    
     if (client.call(srv))
     {
         for(int i = 0; i < 3; i++)

@@ -9,6 +9,10 @@
 #include "ros_cv_img/GetRoi.h"
 #include <cstdlib>
 
+#include <image_transport/image_transport.h>
+#include <opencv2/highgui/highgui.hpp>
+#include <cv_bridge/cv_bridge.h>
+
 using namespace std;
 using namespace cv;
 
