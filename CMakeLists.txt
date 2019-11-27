@@ -13,6 +13,8 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   sensor_msgs
   message_generation
+  image_transport
+  cv_bridge
 )
 
 find_package(realsense2 REQUIRED)
@@ -77,7 +79,8 @@ add_service_files(
 generate_messages(
    DEPENDENCIES
    std_msgs
-   DEPENDENCIES sensor_msgs
+   sensor_msgs
+   #DEPENDENCIES sensor_msgs
 )
 
 ################################################
@@ -112,7 +115,7 @@ generate_messages(
 catkin_package(
   INCLUDE_DIRS include
 #  LIBRARIES ros_cv_img
-  CATKIN_DEPENDS roscpp rospy message_runtime sensor_msgs
+  CATKIN_DEPENDS roscpp rospy message_runtime sensor_msgs cv_bridge image_transport 
 #  DEPENDS system_lib
 )
 

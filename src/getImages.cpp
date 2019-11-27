@@ -24,12 +24,12 @@ void GetImages::GetRoi(int argc, char **argv, Mat img, bool debug)
     ros::ServiceClient client = n.serviceClient<ros_cv_img::GetRoi>("get_roi");
     ros_cv_img::GetRoi srv;
     
-    //https://wiki.ros.org/image_transport/Tutorials/PublishingImages
+    //http://library.isr.ist.utl.pt/docs/roswiki/cv_bridge(2f)Tutorials(2f)UsingCvBridgeToConvertBetweenROSImagesAndOpenCVImages.html
+
+    sensor_msgs::Image msg;
     
-    //image_transport::ImageTransport it(n);
-    
+    /////Send request -> change to sensor_msg/Image/////////
     //srv.request.input = 1;
-    
     if (client.call(srv))
     {
         for(int i = 0; i < 3; i++)
