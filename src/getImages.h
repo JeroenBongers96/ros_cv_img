@@ -13,8 +13,7 @@
 #include <sensor_msgs/Image.h>
 #include <image_transport/image_transport.h>
 #include <cv_bridge/cv_bridge.h>
-#include <opencv/cv.h>
-#include <opencv/highgui.h>
+#include <opencv2/highgui.hpp>
 
 using namespace std;
 using namespace cv;
@@ -29,5 +28,6 @@ class GetImages
         img_struct GetPic(void);
         void GetRoi(int argc, char **argv, Mat img, bool debug);
 };
+
 
 #endif
