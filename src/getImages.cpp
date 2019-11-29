@@ -45,13 +45,13 @@ void GetImages::GetRoi(int argc, char **argv, Mat img, bool debug)
     {
         ROS_ERROR("Failed to call service get_roi");
     }
-
+    /*
     if(debug)
     {
         //show rgb image
         namedWindow("Display Image", WINDOW_AUTOSIZE );
         imshow("Display Image", rgb_img);
         waitKey(0);
-    }
+    }*/
 }
 

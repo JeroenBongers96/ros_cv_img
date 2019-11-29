@@ -231,6 +231,7 @@ target_link_libraries (${PROJECT_NAME} ${PCL_LIBRARIES})
 
 add_executable(yolo_server src/yolo_server.cpp)
 target_link_libraries(yolo_server ${catkin_LIBRARIES})
+target_link_libraries(yolo_server ${OpenCV_LIBS} )
 add_dependencies(yolo_server yolo_server_gencpp)
 
 
