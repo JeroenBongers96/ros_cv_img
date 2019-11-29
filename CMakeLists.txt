@@ -11,7 +11,10 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  sensor_msgs
   message_generation
+  image_transport
+  cv_bridge
 )
 
 find_package(realsense2 REQUIRED)
@@ -76,6 +79,8 @@ add_service_files(
 generate_messages(
    DEPENDENCIES
    std_msgs
+   sensor_msgs
+   #DEPENDENCIES sensor_msgs
 )
 
 ################################################
@@ -108,9 +113,9 @@ generate_messages(
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
+  INCLUDE_DIRS include
 #  LIBRARIES ros_cv_img
-#  CATKIN_DEPENDS roscpp rospy std_msgs
+  CATKIN_DEPENDS roscpp rospy message_runtime sensor_msgs cv_bridge image_transport 
 #  DEPENDS system_lib
 )
 
@@ -226,6 +231,7 @@ target_link_libraries (${PROJECT_NAME} ${PCL_LIBRARIES})
 
 add_executable(yolo_server src/yolo_server.cpp)
 target_link_libraries(yolo_server ${catkin_LIBRARIES})
+target_link_libraries(yolo_server ${OpenCV_LIBS} )
 add_dependencies(yolo_server yolo_server_gencpp)
 
 

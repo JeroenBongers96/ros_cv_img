@@ -24,7 +24,18 @@ void GetImages::GetRoi(int argc, char **argv, Mat img, bool debug)
     ros::ServiceClient client = n.serviceClient<ros_cv_img::GetRoi>("get_roi");
     ros_cv_img::GetRoi srv;
     
-    srv.request.input = 1;
+    //https://stackoverflow.com/questions/27080085/how-to-convert-a-cvmat-into-a-sensor-msgs-in-ros
+
+    sensor_msgs::Image img_msg; //message to be sent 
+    cv_bridge::CvImage img_bridge;
+
+    std_msgs::Header header; // empty header
+    header.seq = 1; //user defined counter
+    header.stamp = ros::Time::now(); // time
+    img_bridge = cv_bridge::CvImage(header, sensor_msgs::image_encodings::RGB8, img);
+    img_bridge.toImageMsg(img_msg); // from cv_bridge to sensor_msgs::Image
+    srv.request.input = img_msg;
+
     if (client.call(srv))
     {
         for(int i = 0; i < 3; i++)
@@ -34,13 +45,13 @@ void GetImages::GetRoi(int argc, char **argv, Mat img, bool debug)
     {
         ROS_ERROR("Failed to call service get_roi");
     }
-
+    /*
     if(debug)
     {
         //show rgb image
         namedWindow("Display Image", WINDOW_AUTOSIZE );
         imshow("Display Image", rgb_img);
         waitKey(0);
-    }
+    }*/
 }
 
